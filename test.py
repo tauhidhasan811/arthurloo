@@ -52,10 +52,3 @@
 
 
 
-text = ""
-
-with open('data.txt', 'r', encoding="utf-8") as f:
-    for line in f:
-        text+=line
-
-print(text)
