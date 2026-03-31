@@ -51,4 +51,8 @@
 
 
 
+def check(**kwargs):
+    print(kwargs)
 
+result = check(a=1, b=2, c=3)
+print(result)

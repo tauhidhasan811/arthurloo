@@ -40,7 +40,7 @@ params = {
             "input_variables": ["personality_and_interest_data", "learning_style_data", "personal_ability_data"]
         }
     },
-    "workflow": {
+    "workflow_service": {
         "run": {
             "url": "https://api.mindpal.io/api/v2/workflow/run?workflow_id=",
             "method": "POST"
