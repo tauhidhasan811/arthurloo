@@ -11,15 +11,36 @@ headers = {
 
 params = {
     "workflow_list": {
-        "personality_and_interest": "69cb3e0c6b30038ca03a1b90",
-        "learning_style": "69cb3a136b30038ca03a1b65",
-        "personal_ability": "69ca4c4689c6022432b26c89",
-        "idp": "69cb4e9b234d4920c169871c",
-        "idp-pd": "69cb5159234d4920c1698738",
-        "ifp": "69cb568ca66602ff1552139a",
-        "ifp-pd": "69cb6777289bc826a836fdf5"
+        "personality_and_interest": {
+            "id": "69cb3e0c6b30038ca03a1b90",
+            "input_variables" : ["personality_and_interest_data"]
+        },
+        "learning_style": {
+            "id": "69cb3a136b30038ca03a1b65",
+            "input_variables" : [ "learning_style_data"]
+        },
+        "personal_ability": {
+            "id": "69cb3e0c6b30038ca03a1b90",
+            "input_variables": ["personal_ability_data"]
+        },
+        "idp": {
+            "id": "69cb4e9b234d4920c169871c",
+            "input_variables": ["personality_and_interest_data", "learning_style_data", "personal_ability_data"]
+        },
+        "idp-pd": {
+            "id": "69cb5159234d4920c1698738",
+            "input_variables": ["personality_and_interest_data", "learning_style_data", "personal_ability_data"]
+        },
+        "ifp": {
+            "id": "69cb568ca66602ff1552139a",
+            "input_variables": ["personality_and_interest_data", "learning_style_data", "personal_ability_data"]
+        },
+        "ifp-pd": {
+            "id": "69cb6777289bc826a836fdf5",
+            "input_variables": ["personality_and_interest_data", "learning_style_data", "personal_ability_data"]
+        }
     },
-    "workflow": {
+    "workflow_service": {
         "run": {
             "url": "https://api.mindpal.io/api/v2/workflow/run?workflow_id=",
             "method": "POST"
