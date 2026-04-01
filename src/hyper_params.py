@@ -53,5 +53,6 @@ params = {
             "url": "https://api.mindpal.io/api/workflow-run-result/retrieve-by-id?run_id=",
             "method": "GET"
         }
-    }
+    },
+    'reports' : ["idp", "idp-pd", "ifp", "ifp-pd"]
 }
