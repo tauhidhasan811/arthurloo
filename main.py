@@ -24,6 +24,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from api.routers.personality_and_interest_route import router as personality_and_interest_router
+from api.routers.learning_style_route import router as learning_style_router
+from api.routers.personal_ability_route import router as personal_ability_router
+from api.routers.report_router import router as report_router
 
 
 app = FastAPI(title="Workflow API", version="1.0")
@@ -36,4 +39,7 @@ app.add_middleware(
 )
 
 app.include_router(personality_and_interest_router)
+app.include_router(learning_style_router)
+app.include_router(personal_ability_router)
+app.include_router(report_router)
 
