@@ -1,22 +1,39 @@
-from dotenv import load_dotenv
-from src.services.workflow_executer import WorkFlowExecuter
+# from dotenv import load_dotenv
+# from src.services.workflow_executer import WorkFlowExecuter
 
-load_dotenv()
+# load_dotenv()
 
-exe = WorkFlowExecuter()
-data = exe.retrive_workflow_result(run_id="69cba338e44d450058289b6e")
+# exe = WorkFlowExecuter()
+# data = exe.retrive_workflow_result(run_id="69cba338e44d450058289b6e")
 
-print(data)
-# wrk_data = WorkFlowData()
+# print(data)
+# # wrk_data = WorkFlowData()
 
-"""Run a workflow with personality and interest data"""
-# text = ""
+# """Run a workflow with personality and interest data"""
+# # text = ""
 
-# with open('data.txt', 'r', encoding="utf-8") as f:
-#     for line in f:
-#         text+=line
-# run_id = wrk_data.run_workflow("personality_and_interest", personality_and_interest_data = text)
-# print(run_id)
+# # with open('data.txt', 'r', encoding="utf-8") as f:
+# #     for line in f:
+# #         text+=line
+# # run_id = wrk_data.run_workflow("personality_and_interest", personality_and_interest_data = text)
+# # print(run_id)
 
-# return id ->  69cba338e44d450058289b6e
+# # return id ->  69cba338e44d450058289b6e
+
+
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+from api.routers.personality_and_interest_route import router as personality_and_interest_router
+
+
+app = FastAPI(title="Workflow API", version="1.0")
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
+
+app.include_router(personality_and_interest_router)
 

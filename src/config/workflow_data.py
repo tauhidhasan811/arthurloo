@@ -5,16 +5,11 @@ class WorkFlowData:
     def __init__(self):
         self.headers= headers
     
-    def execute_workflow(self, method, url, data: dict=None):
-        
-        # service = params["workflow_service"][service_type]
-        # url = service['url'] + id
+    def execute_workflow(self, method, url, body: dict=None):
         if method == "POST":
-            response = requests.post(url, headers=self.headers, json=data)
-            
+            response = requests.post(url, headers=self.headers, json=body)
         elif method =="GET":
             response = requests.get(url, headers=self.headers)
-            
         else: 
             raise ValueError("Unsupported HTTP method")
         return response.json()
