@@ -4,9 +4,9 @@ from src.services.workflow_executer import WorkFlowExecuter
 load_dotenv()
 
 exe = WorkFlowExecuter()
-data = exe.check_workflow_status(run_id="69cba338e44d450058289b6e")
+data = exe.retrive_workflow_result(run_id="69cba338e44d450058289b6e")
 
-print(data.json())
+print(data)
 # wrk_data = WorkFlowData()
 
 """Run a workflow with personality and interest data"""

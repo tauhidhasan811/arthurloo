@@ -11,15 +11,12 @@ class WorkFlowData:
         # url = service['url'] + id
         if method == "POST":
             response = requests.post(url, headers=self.headers, json=data)
-            if response['message'] == "Successfully triggered workflow run":
-                return response['workflow_run_id']
-            else:
-                return "Failed to run workflow"
+            
         elif method =="GET":
             response = requests.get(url, headers=self.headers)
-            return response
+            
         else: 
             raise ValueError("Unsupported HTTP method")
-        
+        return response.json()
 
     
