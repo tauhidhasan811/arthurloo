@@ -20,7 +20,7 @@ async def run_learning_style(body: LearningStyle):
                     "run_id": data
                     }
                 )
-            
+
         else:
             response = JSONResponse(
             status_code=500,

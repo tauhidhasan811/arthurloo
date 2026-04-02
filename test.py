@@ -48,7 +48,8 @@
 
 from pydantic import BaseModel, field_validator, ValidationInfo
 from fastapi import FastAPI, HTTPException
-
+import asyncio
+import time
 app = FastAPI()
 
 class User(BaseModel):
@@ -66,8 +67,8 @@ class User(BaseModel):
     @classmethod
     def age_must_be_positive(cls, v: int) -> int:
         if v <= 0:
-            raise ValueError('Age must be a positive integer')
-            # HTTPException(status_code=400, detail='Age myst be a positive integer')
+            # raise ValueError('Age must be a positive integer')
+            HTTPException(status_code=400, detail='Age myst be a positive integer')
         return v
 
 @app.post("/users/")
@@ -75,5 +76,31 @@ def create_user(user: User):
     try:
         return user
     except Exception as ex:
-        return f"Error occurred: {ex}"
+        return(f"Error occurred: {ex}")
+global w_count
+w_count = 1
+@app.get('/with-wait')
+async def with_wait():
+    global w_count
+    print(f"Recive {w_count} requst")
+    st_time = time.time()
+    cc = w_count
+    if w_count == 1:
+        w_count+=1
+        await asyncio.sleep(60)
+    else:
+        w_count+=1
+    end_time = time.time()
+    print(f"Completed request {cc + 1}, count: {w_count}")
+
+    return {"message": f"Waited for {end_time - st_time} seconds, count: {cc + 1}"}
+wo_count = 0
+@app.get('/without-wait')
+async def without_wait():
+    st_time = time.time()
+    global wo_count
+    wo_count+=1
+    end_time = time.time()
+    return {"message": f"Waited for {end_time - st_time} seconds, count: {wo_count}"}
+    
         
