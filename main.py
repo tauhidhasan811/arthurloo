@@ -21,7 +21,9 @@
 # # return id ->  69cba338e44d450058289b6e
 
 
-from fastapi import FastAPI
+from fastapi import FastAPI, exception_handlers, Request
+from fastapi.responses import JSONResponse
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from api.routers.personality_and_interest_route import router as personality_and_interest_router
 from api.routers.learning_style_route import router as learning_style_router
@@ -37,6 +39,31 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+# @app.exception_handler(RequestValidationError)
+# async def validation_exception_handler(request, exc: RequestValidationError):
+#     message = "Validation errors:"
+#     for error in exc.errors():
+#         message += f"\nField: {error['loc']}, Error: {error['msg']}"
+#     return JSONResponse(
+#         status_code=400,
+#         content={
+#             "status_code":400,
+#             "data": message
+#             }
+#     )
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    # print(exc.errors())
+    error_msg = exc.errors()[0]['msg']
+
+    return JSONResponse(
+        status_code=400,
+        content={
+            "status": False,
+            "status_code": 400,
+            "data": error_msg
+        },
+    )
 
 app.include_router(personality_and_interest_router)
 app.include_router(learning_style_router)
