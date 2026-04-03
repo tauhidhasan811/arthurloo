@@ -12,6 +12,7 @@ class DatabaseManager:
 
     def get_data(self, id):
         _id = ObjectId(id)
+        # print(type(_id))
         data = self.collection.find_one({"child_id": _id})
         # print(list(self.collection.find()))
         return data
