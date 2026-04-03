@@ -1,9 +1,9 @@
 from src.hyper_params import params
-from src.config.workflow_data import WorkFlowData
+from src.config.config_executer import ConfigExecuter
 
 class WorkFlowExecuter:
     def __init__(self):
-        self.wrk_data = WorkFlowData()
+        self.wrk_executer = ConfigExecuter()
     
     def run_workflow(self, workflow_name, body_data: dict):
         
@@ -11,7 +11,7 @@ class WorkFlowExecuter:
         data = params["workflow_list"][workflow_name]
         url = service['url'] + data['id']
 
-        response = self.wrk_data.execute_workflow(method=service['method'], url=url, body=body_data)
+        response = self.wrk_executer.execute_workflow(method=service['method'], url=url, body=body_data)
         if response['message'] == "Successfully triggered workflow run":
             status = True
             return status, response['workflow_run_id']
@@ -24,7 +24,7 @@ class WorkFlowExecuter:
     def check_workflow_status(self, run_id):
         service = params['workflow_service']["status"]
         url = service['url'] + run_id
-        response = self.wrk_data.execute_workflow(method=service['method'], url=url)
+        response = self.wrk_executer.execute_workflow(method=service['method'], url=url)
 
         # output --->  {'workflow_run_id': '69cba338e44d450058289b6e', 'status': 'COMPLETED'}
         return response
@@ -32,7 +32,7 @@ class WorkFlowExecuter:
     def retrive_workflow_result(self, run_id):
         service = params['workflow_service']["result"]
         url = service['url'] + run_id
-        response = self.wrk_data.execute_workflow(method=service['method'], url=url)
+        response = self.wrk_executer.execute_workflow(method=service['method'], url=url)
         """
         output ---> {
             'workflow_run_id': '69cba338e44d450058289b6e', 

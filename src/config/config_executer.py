@@ -1,7 +1,7 @@
 import requests
-from src.hyper_params import headers, params
+from src.hyper_params import headers
 
-class WorkFlowData:
+class ConfigExecuter:
     def __init__(self):
         self.headers= headers
     

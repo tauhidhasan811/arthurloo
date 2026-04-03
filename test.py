@@ -102,10 +102,27 @@
 #     wo_count+=1
 #     end_time = time.time()
 #     return {"message": f"Waited for {end_time - st_time} seconds, count: {wo_count}"}
-    
+
+import json
 from dotenv import load_dotenv        
 from src.db_manager.databse_manager import DatabaseManager
+from bson import ObjectId
+import json
+
+# def convert_objectid(obj):
+#     if isinstance(obj, ObjectId):
+#         return str(obj)
+#     if isinstance(obj, dict):
+#         return {key: convert_objectid(value) for key, value in obj.items()}
+#     if isinstance(obj, list):
+#         return [convert_objectid(item) for item in obj]
+#     return obj
 
 load_dotenv()
 db = DatabaseManager()
-print(db.get_data("69b67c45d156e0e58721cd09"))
+data = db.get_data("69b67c45d156e0e58721cd09")
+print(data)
+# data = data.json()
+# data = convert_objectid(data)
+with open('data/data.json', 'w', encoding="utf-8") as f:
+    json.dump(data, f, ensure_ascii=False, indent=4, default=str)
