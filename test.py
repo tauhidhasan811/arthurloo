@@ -108,4 +108,4 @@ from src.db_manager.databse_manager import DatabaseManager
 
 load_dotenv()
 db = DatabaseManager()
-print(db.get_data())
+print(db.get_data("69b67c45d156e0e58721cd09"))
