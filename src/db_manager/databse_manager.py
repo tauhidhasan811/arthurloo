@@ -2,17 +2,16 @@ import os
 from dotenv import load_dotenv
 from pymongo import MongoClient
 from bson import ObjectId
+from src.db_manager.config_db import GetDBCollection
 
 load_dotenv()
 
 class DatabaseManager:
-    def __init__(self):
-        uri = os.environ.get("MONGO_URI")
-        self.collection = MongoClient(uri)['arthuloo']['child_insights']
+    def __init__(self, collection_name = "child_insights"):
+        self.collection = GetDBCollection(collection_name)
 
-    def get_data(self):
-        # data = self.collection.find_one({"child_id": child_id})
-        self.collection.insert_one({"child_id": '123', "name": "John Doe", "age": 10})
-        data = self.collection.find_one({"child_id": '1234'})
+    def get_data(self, id):
+        _id = ObjectId(id)
+        data = self.collection.find_one({"child_id": _id})
         # print(list(self.collection.find()))
         return data

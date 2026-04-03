@@ -18,8 +18,8 @@ async def run_learning_style(body: LearningStyle):
                     "status" : status,
                     "status_code": 200,
                     "run_id": data
-                    }
-                )
+                }
+            )
 
         else:
             response = JSONResponse(
@@ -28,8 +28,8 @@ async def run_learning_style(body: LearningStyle):
                 "status" : status,
                 "status_code": 500,
                 "message": data
-                }
-            )
+            }
+        )
         return response
         
     except Exception as e:
