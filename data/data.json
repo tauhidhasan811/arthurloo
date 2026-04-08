@@ -2,9 +2,9 @@
     "_id": "69b67c45d156e0e58721cd09",
     "parentId": "69b62d3d38944a2189ad4af9",
     "child_id": "69b67c45d156e0e58721cd09",
-    "personality_and_interest": "",
-    "learning_style": "",
-    "personal_ability": "",
+    "personality_and_interest": "personality_and_interest",
+    "learning_style": "learning_style",
+    "personal_ability": "personal_ability",
     "created_at": "2024-06-17T12:00:00Z",
     "updated_at": "2024-06-17T12:00:00Z"
 }

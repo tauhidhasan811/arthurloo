@@ -124,5 +124,15 @@ data = db.get_data("69b67c45d156e0e58721cd09")
 print(data)
 # data = data.json()
 # data = convert_objectid(data)
+
+personality_and_interest = data.get("personality_and_interest")
+learning_style = data.get("learning_style")
+personal_ability = data.get("personal_ability")
+
+print(personality_and_interest)
+print(learning_style)
+print(personal_ability)
+
+
 with open('data/data.json', 'w', encoding="utf-8") as f:
     json.dump(data, f, ensure_ascii=False, indent=4, default=str)
