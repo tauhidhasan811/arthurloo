@@ -25,9 +25,12 @@ class WorkFlowExecuter:
         service = params['workflow_service']["status"]
         url = service['url'] + run_id
         response = self.wrk_executer.execute_workflow(method=service['method'], url=url)
-
+        status = response.get("status")
+        if status == 'COMPLETED':
+            return True
+        return False
         # output --->  {'workflow_run_id': '69cba338e44d450058289b6e', 'status': 'COMPLETED'}
-        return response
+        # return response
     
     def retrive_workflow_result(self, run_id):
         service = params['workflow_service']["result"]
@@ -39,8 +42,20 @@ class WorkFlowExecuter:
             'workflow_id': '69cb3e0c6b30038ca03a1b90', 
             'workflow_title': '3. Class Individual Ability Assessment', 
             'workflow_run_input': [{'title': 'personal_ability_data', 'type': 'TEXT', 'content': '', 'index': 0}], 
-            'workflow_run_output': [{'index': 0, 'title': 'Developmental Analysis', 'type': 'AGENT', 'content': '.....................AI response'}
+            'workflow_run_output': [
+                                        {
+                                            'index': 0, 
+                                            'title': 'Developmental Analysis',
+                                            'type': 'AGENT', 
+                                            'content': '.....................AI response'
+                                        }
                                      ]
             }
         """
-        return response['workflow_run_output'][0]['content']
+        if response['workflow_run_id'] == run_id:
+            status = True
+            content = response['workflow_run_output'][0]['content']
+        else:
+            status = False
+            content = "No data found"
+        return status, content

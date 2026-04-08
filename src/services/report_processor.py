@@ -29,3 +29,12 @@ class ReportProcessor:
         status, run_id = self.workflow_executer.run_workflow("report_generation", body_data)
 
         return status, run_id
+    
+    def data_retriver(self, run_id):
+        status = self.workflow_executer.check_workflow_status(run_id=run_id)
+        if status:
+            content = self.workflow_executer.retrive_workflow_result(run_id=run_id)
+        else:
+            content = "Analysis still running"
+        
+        return status, content
