@@ -15,4 +15,7 @@ class DatabaseManager:
         # print(type(_id))
         data = self.collection.find_one({"child_id": _id})
         # print(list(self.collection.find()))
-        return data
+        if data != None:
+            return data
+        raise ValueError(f"No data found for child_id {id}")
+        
