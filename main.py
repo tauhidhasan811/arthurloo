@@ -54,23 +54,24 @@ app.add_middleware(
 #             "data": message
 #             }
 #     )
-# @app.exception_handler(RequestValidationError)
-# async def validation_exception_handler(request: Request, exc: RequestValidationError):
-#     # print(exc.errors())
-#     error_msg = exc.errors()[0]['msg']
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    # print(exc.errors())
+    error_msg = exc.errors()[0]['msg']
 
-#     return JSONResponse(
-#         status_code=400,
-#         content={
-#             "status": False,
-#             "status_code": 400,
-#             "message": error_msg
-#         },
-#     )
+    return JSONResponse(
+        status_code=400,
+        content={
+            "status": False,
+            "status_code": 400,
+            "message": error_msg
+        },
+    )
 
 app.include_router(personality_and_interest_router)
 app.include_router(learning_style_router)
 app.include_router(personal_ability_router)
+app.include_router(all_module_router)
 app.include_router(report_router)
 app.include_router(data_retriver_route)
-app.include_router(all_module_router)
+
