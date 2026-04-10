@@ -54,6 +54,21 @@ app.add_middleware(
 #             "data": message
 #             }
 #     )
+
+
+@app.get('/', tags=['Helth check'])
+async def health_check():
+    return JSONResponse(
+        status_code=200,
+        content={
+            'status': True,
+            'status_code': 200,
+            'response': "Helth check"
+        }
+    )
+
+
+
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     # print(exc.errors())
@@ -67,6 +82,9 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
             "message": error_msg
         },
     )
+
+
+
 
 app.include_router(personality_and_interest_router)
 app.include_router(learning_style_router)
