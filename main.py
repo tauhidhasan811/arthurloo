@@ -28,7 +28,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from api.routers.personality_and_interest_route import router as personality_and_interest_router
 from api.routers.learning_style_route import router as learning_style_router
 from api.routers.personal_ability_route import router as personal_ability_router
-from api.routers.modules_route import router as all_module_router
+from api.routers.all_modules_route import router as all_module_router
 from api.routers.report_router import router as report_router
 from api.routers.data_retriver import router as data_retriver_route
 

@@ -20,7 +20,11 @@ async def run_all_module(module_data: AllModuleData):
         status = False
         if PI_status and LS_status and PA_status:
             status = True
-        run_ids.extend([PI_run_id, LS_run_id, PA_run_id])
+        run_ids.extend([
+            {'personality_and_interest': PI_run_id}, 
+            {'learning_style': LS_run_id}, 
+            {'personal_ability': PA_run_id}
+            ])
         
         if status:
             response = JSONResponse(
