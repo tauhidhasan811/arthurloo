@@ -12,13 +12,13 @@ class WorkFlowExecuter:
         url = service['url'] + data['id']
 
         response = self.wrk_executer.execute_workflow(method=service['method'], url=url, body=body_data)
-        if response['message'] == "Successfully triggered workflow run":
-            status = True
+        # print(response)
+        status = response['success']
+        if status:
             return status, response['workflow_run_id']
-        else:
-            status = False
-            return status, "Failed to run workflow"
-        #output ----> {'message': 'Successfully triggered workflow run', 'workflow_run_id': '69ca55977861951155e0b53e'}
+
+        return status, "Failed to run workflow"
+        #output ----> {'success': True, 'status_code': 200, 'message': 'Successfully triggered workflow run', 'workflow_run_id': '69d9a69e263277d9bd508c25'}
         
         
     def check_workflow_status(self, run_id):
